@@ -48,10 +48,8 @@
 
   .person {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     object-fit: cover;
     object-position: left center;
   }
@@ -71,73 +69,66 @@
   .stat .lbl   { font-size: 14px; font-weight: bold; color: #0d1b2e; }
   .stat .sub   { font-size: 11px; color: #0d1b2e; margin-top: 4px; }
 
-  .content {
-    position: absolute;
-    right: 60px;
-    top: 50%;
-    transform: translateY(-55%);
+  /* Right-side container: tagline + chatbot slot stacked vertically */
+  .right-content {
+    position: fixed;
+    right: 600px;
+    top: 18%;
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    z-index: 10;
   }
-  .content h1 { font-size: 44px; font-weight: bold; margin-bottom: 8px; }
-  .content p  { font-size: 18px; color: rgba(255,255,255,0.6); margin-bottom: 24px; }
 
-   /* Headline above chat */
-    .right-content {
-        position: fixed;
-  right: 30%;
-  top: 16%;
-  width: 20%;
-  text-align: left;
-  z-index: 10;
-      display: flex; flex-direction: column; align-items: center; gap: 24px;
-    }
-    .tagline {
-      text-align: center;
-    }
-    .tagline h2 {
-      font-size: 13px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
-      color: #29c5c5; margin-bottom: 8px;
-    }
-    .tagline p {
-      font-size: 28px; font-weight: 800; color: #fff; line-height: 1.2;
-      letter-spacing: -0.5px;
-    }
-    .tagline p span { color: #f5c400; }
+  .tagline {
+    text-align: center;
+    width: 95%;
+  }
+  .tagline h2 {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.25em;
+    text-transform: uppercase; color: #29c5c5; margin-bottom: 8px;
+  }
+  .tagline p {
+    font-size: 28px; font-weight: 800; color: #fff;
+    line-height: 1.2; letter-spacing: -0.5px;
+  }
+  .tagline p span { color: #f5c400; }
 
+  /* Slot that holds the chatbot once JS moves it in */
+  #chat-slot {
+    width: 100%;
+    height: 60vh;
+    max-height: 70vh;
+    position: relative;
+  }
 
-nu-webchat,
-[id^="opendialog"],
-.od-webchat-wrapper,
-.webchat-wrapper,
-nu-webchat::part(launcher) {
-  right: 30% !important;
-  left: auto !important;
-  transform: none !important;
-  bottom: 40% !important;
-  top: 35% !important;
-  position: fixed !important;
-  height: 60vh !important;
-  max-height: 80vh !important;
-}
+  /* Widget styles once inside the slot */
+  #chat-slot > * {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+  }
 
-.chat-header {
-  position: fixed;
-  right: 30%;
-  top: 18%;
-  width: 20%;
-  text-align: left;
-  z-index: 10;
-}
-
-.chat-header h1 {
-  font-size: 28px;
-  margin-bottom: 8px;
-}
-
-.chat-header p {
-  font-size: 16px;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.4;
-}
+  /* Fallback: if JS hasn't moved it yet, keep it roughly in place */
+  nu-webchat,
+  [id^="opendialog"],
+  .od-webchat-wrapper,
+  .webchat-wrapper {
+    right: 160px !important;
+    left: auto !important;
+    top: 38% !important;
+    bottom: auto !important;
+    position: fixed !important;
+    width: 420px !important;
+    height: 60vh !important;
+  }
 </style>
 </head>
 <body>
