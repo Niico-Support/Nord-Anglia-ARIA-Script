@@ -1,0 +1,387 @@
+/*
+ * OpenDialog WebChat — "Aria" Dark Glassmorphism Theme
+ * =====================================================
+ * Replicates the dark navy card with blurred diagonal-line background,
+ * teal agent name, cyan quick-reply links, online indicator dot, and
+ * frosted-glass input bar shown in the design screenshot.
+ *
+ * HOW TO USE
+ * ----------
+ * 1. Host this file (or inline it in a <style> tag).
+ * 2. Reference it AFTER the OpenDialog stylesheet:
+ *      <link rel="stylesheet" href="https://assets.webchat.opendialog.app/style.css">
+ *      <link rel="stylesheet" href="opendialog-aria-theme.css">
+ * 3. OR pass the customSettings.cssOverrideUrl property in your SDK init:
+ *      customSettings: { cssOverrideUrl: 'https://yoursite.com/opendialog-aria-theme.css' }
+ *
+ * COLOUR TOKENS (edit here to re-skin)
+ */
+
+:root {
+  --aria-bg-card:          rgba(18, 22, 48, 0.82);   /* main chat card */
+  --aria-bg-overlay:       #0d1130;                   /* solid fallback */
+  --aria-accent-teal:      #4ecdc4;                   /* agent name / header */
+  --aria-accent-cyan:      #56cfe1;                   /* quick-reply links */
+  --aria-text-primary:     #e8eaf6;                   /* main body text  */
+  --aria-text-muted:       #8892b0;                   /* timestamps etc  */
+  --aria-online-dot:       #4caf7d;                   /* green status dot */
+  --aria-input-bg:         rgba(255, 255, 255, 0.07); /* frosted input   */
+  --aria-input-border:     rgba(255, 255, 255, 0.12);
+  --aria-input-text:       #c9d1e8;
+  --aria-input-placeholder:#6b7594;
+  --aria-send-icon:        #56cfe1;
+  --aria-bubble-bot-bg:    rgba(255, 255, 255, 0.06);
+  --aria-bubble-user-bg:   rgba(78, 205, 196, 0.18);
+  --aria-border-radius:    18px;
+  --aria-font:             'Inter', system-ui, sans-serif;
+}
+
+/* ─── 1. OUTER WIDGET WRAPPER ─────────────────────────────────────── */
+
+.od-webchat,
+#od-webchat,
+.od-chat-window,
+.od-chat-container {
+  font-family: var(--aria-font) !important;
+}
+
+/* The floating chat window / card */
+.od-chat-window,
+.od-webchat__window,
+[class*="chat-window"],
+[class*="chatWindow"] {
+  background: var(--aria-bg-card) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: var(--aria-border-radius) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55),
+              0 0 0 1px rgba(78, 205, 196, 0.06) !important;
+
+  /* Diagonal decorative lines — pure CSS, no image required */
+  position: relative !important;
+  overflow: hidden !important;
+  color: var(--aria-text-primary) !important;
+}
+
+/* Diagonal line pattern overlay (mimics the background grid in the screenshot) */
+.od-chat-window::before,
+.od-webchat__window::before,
+[class*="chat-window"]::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  background-image:
+    repeating-linear-gradient(
+      -55deg,
+      rgba(255, 255, 255, 0.025) 0px,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 28px
+    ) !important;
+}
+
+/* Keep all real content above the pseudo-element */
+.od-chat-window > *,
+.od-webchat__window > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* ─── 2. HEADER ───────────────────────────────────────────────────── */
+
+.od-chat-header,
+.od-webchat__header,
+[class*="chat-header"] {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+  padding: 14px 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+/* Agent / bot name */
+.od-chat-header__name,
+.od-webchat__header-name,
+[class*="agent-name"],
+[class*="header-title"],
+[class*="bot-name"] {
+  color: var(--aria-accent-teal) !important;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* Avatar circle */
+.od-chat-header__avatar,
+.od-webchat__avatar,
+[class*="avatar"] img,
+[class*="avatar"] {
+  border-radius: 50% !important;
+  border: 2px solid var(--aria-accent-teal) !important;
+  width: 38px !important;
+  height: 38px !important;
+  object-fit: cover !important;
+}
+
+/* Online status dot — the small coloured circle next to "Online" */
+.od-chat-header__status,
+.od-webchat__status,
+[class*="status-indicator"],
+[class*="online-status"] {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  font-size: 0.72rem !important;
+  color: var(--aria-text-muted) !important;
+  margin-left: auto !important;
+}
+
+.od-chat-header__status::before,
+.od-webchat__status::before,
+[class*="status-indicator"]::before,
+[class*="online-status"]::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: var(--aria-online-dot) !important;
+  box-shadow: 0 0 6px var(--aria-online-dot) !important;
+  flex-shrink: 0 !important;
+}
+
+/* ─── 3. MESSAGE LIST ─────────────────────────────────────────────── */
+
+.od-message-list,
+.od-webchat__messages,
+[class*="message-list"],
+[class*="messages-container"] {
+  background: transparent !important;
+  padding: 16px 14px !important;
+}
+
+/* Bot / agent bubbles */
+.od-message--agent,
+.od-message--bot,
+[class*="message-agent"],
+[class*="message-bot"],
+[class*="bot-message"] {
+  background: var(--aria-bubble-bot-bg) !important;
+  backdrop-filter: blur(6px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  border-radius: 4px 14px 14px 14px !important;
+  color: var(--aria-text-primary) !important;
+  padding: 10px 14px !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  max-width: 82% !important;
+}
+
+/* User bubbles */
+.od-message--user,
+[class*="message-user"],
+[class*="user-message"] {
+  background: var(--aria-bubble-user-bg) !important;
+  border: 1px solid rgba(78, 205, 196, 0.18) !important;
+  border-radius: 14px 4px 14px 14px !important;
+  color: var(--aria-text-primary) !important;
+  padding: 10px 14px !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  max-width: 82% !important;
+}
+
+/* Timestamps / metadata */
+.od-message__time,
+[class*="message-time"],
+[class*="timestamp"] {
+  color: var(--aria-text-muted) !important;
+  font-size: 0.68rem !important;
+}
+
+/* ─── 4. QUICK-REPLY / BUTTON SUGGESTIONS ────────────────────────── */
+/*
+ * These are the teal hyperlink-style items in the screenshot:
+ *   "Tell me about courses"
+ *   "Application process"
+ *   "Schedule a call"
+ */
+
+.od-quick-reply,
+.od-button-message,
+[class*="quick-reply"],
+[class*="suggestion"],
+[class*="button-message"],
+.od-message__action-button {
+  background: transparent !important;
+  border: none !important;
+  color: var(--aria-accent-cyan) !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  padding: 4px 0 !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  display: block !important;
+  text-decoration: none !important;
+  transition: color 0.2s, letter-spacing 0.2s !important;
+}
+
+.od-quick-reply:hover,
+.od-button-message:hover,
+[class*="quick-reply"]:hover,
+[class*="suggestion"]:hover {
+  color: var(--aria-accent-teal) !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* ─── 5. INPUT AREA ───────────────────────────────────────────────── */
+
+.od-input-area,
+.od-webchat__input,
+[class*="input-area"],
+[class*="chat-input"] {
+  background: var(--aria-input-bg) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid var(--aria-input-border) !important;
+  border-radius: 24px !important;
+  margin: 10px 12px 14px !important;
+  padding: 6px 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* Text input field */
+.od-input-area input,
+.od-input-area textarea,
+.od-webchat__input input,
+.od-webchat__input textarea,
+[class*="chat-input"] input,
+[class*="chat-input"] textarea,
+[class*="message-input"] {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  color: var(--aria-input-text) !important;
+  font-family: var(--aria-font) !important;
+  font-size: 0.875rem !important;
+  width: 100% !important;
+  caret-color: var(--aria-accent-cyan) !important;
+}
+
+.od-input-area input::placeholder,
+.od-input-area textarea::placeholder,
+[class*="message-input"]::placeholder {
+  color: var(--aria-input-placeholder) !important;
+}
+
+/* Send / submit button */
+.od-input-area button[type="submit"],
+.od-send-button,
+[class*="send-button"],
+[class*="submit-button"] {
+  background: transparent !important;
+  border: none !important;
+  padding: 4px !important;
+  cursor: pointer !important;
+  color: var(--aria-send-icon) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  transition: opacity 0.2s !important;
+}
+
+.od-input-area button[type="submit"]:hover,
+.od-send-button:hover {
+  opacity: 0.75 !important;
+}
+
+/* ─── 6. LAUNCHER / FAB BUTTON ────────────────────────────────────── */
+/*
+ * The floating button users click to open the chat.
+ * The customSettings.openCta block in your JS settings overrides
+ * inline styles, but you can pre-set defaults here too.
+ */
+
+.od-launcher,
+.od-webchat__launcher,
+[class*="launcher"],
+[class*="open-cta"],
+[class*="fab-button"] {
+  background: linear-gradient(135deg, #1a1f4a 0%, #0d1130 100%) !important;
+  border: 1px solid rgba(78, 205, 196, 0.30) !important;
+  border-radius: 50px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45),
+              0 0 0 1px rgba(78, 205, 196, 0.10) !important;
+  color: var(--aria-accent-teal) !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  cursor: pointer !important;
+  transition: box-shadow 0.25s, transform 0.2s !important;
+}
+
+.od-launcher:hover,
+.od-webchat__launcher:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55),
+              0 0 0 2px rgba(78, 205, 196, 0.25) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ─── 7. SCROLLBAR ────────────────────────────────────────────────── */
+
+.od-message-list::-webkit-scrollbar,
+.od-webchat__messages::-webkit-scrollbar {
+  width: 4px !important;
+}
+
+.od-message-list::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.od-message-list::-webkit-scrollbar-thumb {
+  background: rgba(78, 205, 196, 0.25) !important;
+  border-radius: 4px !important;
+}
+
+/* ─── 8. MISC / CLOSE BUTTON ──────────────────────────────────────── */
+
+.od-chat-header__close,
+.od-webchat__close,
+[class*="close-button"] {
+  color: var(--aria-text-muted) !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: color 0.2s !important;
+}
+
+.od-chat-header__close:hover,
+[class*="close-button"]:hover {
+  color: var(--aria-accent-teal) !important;
+}
+
+/* ─── 9. SDK customSettings COMPANION (for your JS init) ──────────── */
+/*
+ * Copy the block below into your webchat.init(settings) call.
+ * It configures the launcher CTA to match the pill-shaped button
+ * visible in the screenshot.
+ *
+ * customSettings: {
+ *   openCta: {
+ *     title: 'Chat with Aria',
+ *     borderRadius: '50px',
+ *     width: '200px',
+ *     height: '56px',
+ *     background: 'linear-gradient(135deg, #1a1f4a 0%, #0d1130 100%)',
+ *     color: '#4ecdc4',
+ *     border: '1px solid rgba(78,205,196,0.30)',
+ *     boxShadow: '0 8px 32px rgba(0,0,0,0.45)'
+ *   }
+ * }
+ */
