@@ -1,168 +1,341 @@
 /*
- * OpenDialog — Aria Dark Theme
- * Overrides OD's internal hashed CSS variables + confirmed class names
- * Load via: Interface Settings → CSS for Chatbot → Link to CSS file
+ * OpenDialog — Aria Dark Glassmorphism Theme v4
+ * Matching the target design: dark navy, frosted glass bubbles,
+ * teal agent name, cyan links, online dot, diagonal line bg
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 /* ================================================================
-   STEP 1: Override OD's hashed CSS variables at :root level.
-   These are the real variables OD uses internally (from style.css).
+   OD INTERNAL CSS VARIABLE OVERRIDES (hashed names from style.css)
    ================================================================ */
 :root {
-  /* Primary colour — used for header bg, launcher bg, accents */
-  --709662e5: #4ecdc4;   /* icon/text colour on dark bg */
-  --732948e6: #121630;   /* icon bg active state */
-  --70a8208a: #4ecdc4;   /* accent / active colour */
-
-  /* Body background */
-  --1a712666: #121630;   /* .od-body background */
-
-  /* Header */
-  --7da64eb0: #121630;   /* .od-body-header background */
-  --4796082f: #e8eaf6;   /* header title colour */
-  --41cc9d06: 1rem;      /* header title font size */
-  --5e6aaf40: 0;         /* header title margin-top */
-
-  /* Input area */
-  --008226db: rgba(255,255,255,0.06);  /* textarea-sizer background */
-  --06542459: rgba(255,255,255,0.12);  /* textarea-sizer border */
-  --5d115345: #4ecdc4;                 /* textarea focus border */
-  --937168c6: rgba(78,205,196,0.2);    /* textarea focus outline */
-  --31961c9a: #e8eaf6;                 /* textarea text colour */
-  --5e0e2d34: #8892b0;                 /* textarea placeholder */
-  --0d7809c1: 0.875rem;                /* textarea font size */
-
-  /* Send button */
-  --4b8fe793: #1a2040;   /* send button background */
-  --6b0fa22e: rgba(255,255,255,0.12); /* send button border */
-  --4750c752: #56cfe1;   /* send button icon colour */
-
-  /* Voice button */
-  --31fb3552: #1a2040;   /* voice button background */
-  --12d5e816: #56cfe1;   /* voice button icon */
-  --d261fe56: rgba(255,255,255,0.12); /* voice button border */
-
-  /* Header close/menu icons */
-  --7dc7b913: #8892b0;   /* header-close colour */
-
   /* Font */
   --31da3d0e: 'Inter', sans-serif;
 
+  /* Body background */
+  --1a712666: #0f1328;
+
+  /* Header background */
+  --7da64eb0: #0f1328;
+
+  /* Header title colour → teal */
+  --4796082f: #4ecdc4;
+
+  /* Header icon colours */
+  --7dc7b913: rgba(255,255,255,0.45);
+  --709662e5: rgba(255,255,255,0.45);
+  --732948e6: #1a2040;
+  --70a8208a: #4ecdc4;
+
+  /* Input / textarea */
+  --008226db: rgba(255,255,255,0.06);
+  --06542459: rgba(255,255,255,0.10);
+  --5d115345: #4ecdc4;
+  --937168c6: rgba(78,205,196,0.15);
+  --31961c9a: #d0d4f0;
+  --5e0e2d34: #5a6285;
+  --0d7809c1: 0.875rem;
+
+  /* Send button */
+  --4b8fe793: rgba(255,255,255,0.06);
+  --6b0fa22e: rgba(255,255,255,0.10);
+  --4750c752: #56cfe1;
+
+  /* Voice button */
+  --31fb3552: rgba(255,255,255,0.06);
+  --12d5e816: #56cfe1;
+  --d261fe56: rgba(255,255,255,0.10);
+
   /* Dropdown */
-  --7d1391f5: 0.875rem;  /* dropdown item font size */
-  --29a1e1de: 400;       /* dropdown item font weight */
-  --598f038b: 0.75rem;   /* dropdown sub head font size */
+  --7d1391f5: 0.875rem;
+  --29a1e1de: 400;
+  --598f038b: 0.75rem;
 }
 
 /* ================================================================
-   STEP 2: Class-level overrides for anything not covered by variables
+   GLOBAL
    ================================================================ */
-
 html, body {
   font-family: 'Inter', sans-serif !important;
-  background: #121630 !important;
+  background: transparent !important;
 }
 
-/* Main chat card */
+/* ================================================================
+   MAIN CARD — glassmorphism effect
+   ================================================================ */
 .od-body {
-  background: #121630 !important;
+  background: rgba(13, 17, 45, 0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
   font-family: 'Inter', sans-serif !important;
 }
 
-/* Header */
-.od-body-header {
-  background: #121630 !important;
-  border-bottom: 1px solid rgba(255,255,255,0.09) !important;
-}
-
-.od-body-header__title {
-  color: #4ecdc4 !important;
-  font-weight: 600 !important;
-}
-
-.od-body-header__menu,
-.od-body-header__close {
-  color: #8892b0 !important;
-}
-
-/* Message scroll area — diagonal lines + dark bg */
+/* ================================================================
+   DIAGONAL LINE BACKGROUND on message area
+   ================================================================ */
 .od-body__main {
   background:
     repeating-linear-gradient(
-      -55deg,
-      rgba(255,255,255,0.015) 0px,
-      rgba(255,255,255,0.015) 1px,
+      -52deg,
+      rgba(255,255,255,0.028) 0px,
+      rgba(255,255,255,0.028) 1px,
       transparent 1px,
-      transparent 28px
+      transparent 32px
     ),
-    #121630 !important;
+    rgba(13, 17, 45, 0.0) !important;
 }
 
-/* Input / form footer */
+/* ================================================================
+   HEADER
+   ================================================================ */
+.od-body-header {
+  background: rgba(13, 17, 45, 0.95) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  border-radius: 16px 16px 0 0 !important;
+}
+
+/* Agent name — teal */
+.od-body-header__title {
+  color: #4ecdc4 !important;
+  font-weight: 600 !important;
+  font-size: 1.05rem !important;
+}
+
+/* Header icons (minimise, menu) */
+.od-body-header__menu,
+.od-body-header__close {
+  color: rgba(255,255,255,0.45) !important;
+}
+
+/* Avatar — teal ring */
+.od-body-header__logo img,
+[class*="avatar"] img {
+  border: 2px solid #4ecdc4 !important;
+  border-radius: 50% !important;
+}
+
+/* "Online" status dot — inject via subtitle if present */
+.od-body-header__subtitle,
+[class*="header__subtitle"],
+[class*="header__status"] {
+  color: rgba(255,255,255,0.55) !important;
+  font-size: 0.72rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+
+.od-body-header__subtitle::before,
+[class*="header__subtitle"]::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  background: #4caf7d !important;
+  box-shadow: 0 0 6px #4caf7d !important;
+  flex-shrink: 0 !important;
+}
+
+/* ================================================================
+   MESSAGE BUBBLES
+   ================================================================ */
+
+/* Bot message bubbles — dark frosted */
+.od-body__main .od-message--agent,
+.od-body__main [class*="message--agent"],
+.od-body__main [class*="message--bot"] {
+  background: rgba(255,255,255,0.07) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  border-radius: 4px 16px 16px 16px !important;
+  color: #dde1f5 !important;
+  box-shadow: none !important;
+}
+
+/* Target the inner text/bubble wrapper too */
+[class*="message--agent"] > *,
+[class*="message--agent"] p,
+[class*="message--bot"] > *,
+[class*="message--bot"] p {
+  color: #dde1f5 !important;
+  background: transparent !important;
+}
+
+/* Any white card wrapping a bot message */
+.od-body__main .od-message--agent .od-message__bubble,
+.od-body__main .od-message--agent .od-message__text,
+.od-body__main [class*="message__bubble"],
+.od-body__main [class*="message__text"] {
+  background: rgba(255,255,255,0.07) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  color: #dde1f5 !important;
+  border-radius: 4px 16px 16px 16px !important;
+  backdrop-filter: blur(6px) !important;
+}
+
+/* User message bubbles — teal tint */
+.od-body__main .od-message--user,
+.od-body__main [class*="message--user"] {
+  background: rgba(78,205,196,0.12) !important;
+  border: 1px solid rgba(78,205,196,0.22) !important;
+  border-radius: 16px 4px 16px 16px !important;
+  color: #dde1f5 !important;
+}
+
+.od-body__main .od-message--user .od-message__bubble,
+.od-body__main .od-message--user .od-message__text,
+.od-body__main [class*="message--user"] [class*="message__bubble"] {
+  background: rgba(78,205,196,0.12) !important;
+  border: 1px solid rgba(78,205,196,0.22) !important;
+  color: #dde1f5 !important;
+  border-radius: 16px 4px 16px 16px !important;
+}
+
+/* Timestamps */
+[class*="message__time"],
+[class*="message-time"] {
+  color: rgba(255,255,255,0.3) !important;
+  font-size: 0.66rem !important;
+}
+
+/* ================================================================
+   QUICK REPLIES / BUTTON LIST — cyan link style
+   ================================================================ */
+.od-list-message__item,
+.od-button-message,
+[class*="list-message__item"],
+[class*="button-message"],
+[class*="quick-reply"],
+[class*="list-item"] {
+  background: transparent !important;
+  border: none !important;
+  color: #56cfe1 !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  padding: 4px 0 !important;
+  text-align: left !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.od-list-message__item:hover,
+[class*="list-message__item"]:hover,
+[class*="quick-reply"]:hover {
+  color: #4ecdc4 !important;
+  background: transparent !important;
+}
+
+/* ================================================================
+   INPUT FORM FOOTER
+   ================================================================ */
 .od-body-form {
-  background: #121630 !important;
-  border-top: 1px solid rgba(255,255,255,0.09) !important;
+  background: rgba(13, 17, 45, 0.95) !important;
+  border-top: 1px solid rgba(255,255,255,0.07) !important;
+  border-radius: 0 0 16px 16px !important;
 }
 
-/* Textarea wrapper */
+/* Textarea pill */
 .od-user-input .textarea-sizer {
   background: rgba(255,255,255,0.06) !important;
-  border-color: rgba(255,255,255,0.12) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
   border-radius: 24px !important;
 }
 
+.od-user-input .textarea-sizer:focus-within {
+  border-color: rgba(78,205,196,0.5) !important;
+  outline-color: rgba(78,205,196,0.12) !important;
+}
+
 .od-user-input .textarea-sizer textarea {
-  color: #e8eaf6 !important;
+  color: #d0d4f0 !important;
   caret-color: #56cfe1 !important;
+  font-family: 'Inter', sans-serif !important;
 }
 
 .od-user-input .textarea-sizer textarea::placeholder {
-  color: #8892b0 !important;
+  color: #5a6285 !important;
 }
 
 /* Send button */
 .od-user-input__button {
-  background: #1a2040 !important;
-  border-color: rgba(255,255,255,0.12) !important;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
   color: #56cfe1 !important;
   border-radius: 10px !important;
 }
 
 .od-user-input__button:hover:not(:disabled) {
-  background: rgba(86,207,225,0.15) !important;
-  border-color: #56cfe1 !important;
+  background: rgba(86,207,225,0.14) !important;
+  border-color: rgba(86,207,225,0.4) !important;
+  color: #4ecdc4 !important;
 }
 
-/* Dropdown */
+.od-user-input__button:disabled {
+  opacity: 0.35 !important;
+}
+
+/* Voice button */
+.od-voice {
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(255,255,255,0.10) !important;
+  color: #56cfe1 !important;
+}
+
+/* ================================================================
+   DROPDOWN MENU
+   ================================================================ */
 .od-dropdown-menu {
-  background: #1a2040 !important;
-  border-color: rgba(255,255,255,0.12) !important;
+  background: #151c3d !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5) !important;
 }
 
 .od-dropdown-menu__item {
-  color: #e8eaf6 !important;
-  border-bottom-color: rgba(255,255,255,0.09) !important;
+  color: #d0d4f0 !important;
+  border-bottom-color: rgba(255,255,255,0.07) !important;
 }
 
 .od-dropdown-menu__item:hover {
   background: rgba(255,255,255,0.05) !important;
 }
 
-/* Progress bar area */
+/* ================================================================
+   PROGRESS BAR
+   ================================================================ */
 .od-progress {
-  background: #121630 !important;
+  background: rgba(13,17,45,0.95) !important;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 4px !important; }
+/* ================================================================
+   SCROLLBAR
+   ================================================================ */
+::-webkit-scrollbar { width: 3px !important; }
 ::-webkit-scrollbar-track { background: transparent !important; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(78,205,196,0.3) !important;
+  background: rgba(78,205,196,0.25) !important;
   border-radius: 4px !important;
 }
 * {
   scrollbar-width: thin !important;
-  scrollbar-color: rgba(78,205,196,0.3) transparent !important;
+  scrollbar-color: rgba(78,205,196,0.25) transparent !important;
+}
+
+/* ================================================================
+   CATCH-ALL — kill any remaining white backgrounds
+   ================================================================ */
+.od-body * {
+  border-color: inherit;
+}
+
+/* Any white card/panel inside the body */
+.od-body [style*="background: rgb(255"] ,
+.od-body [style*="background-color: rgb(255"],
+.od-body [style*="background:#fff"],
+.od-body [style*="background: #fff"],
+.od-body [style*="background:white"],
+.od-body [style*="background: white"] {
+  background: rgba(255,255,255,0.07) !important;
+  color: #dde1f5 !important;
 }
