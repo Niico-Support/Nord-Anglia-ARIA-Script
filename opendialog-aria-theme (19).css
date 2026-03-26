@@ -1,0 +1,213 @@
+/*
+ * OpenDialog — Aria Glassmorphism Theme
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --49584358: transparent;
+  --47dc15c5: transparent;
+  --79bff9f8: #4ecdc4;
+  --56e33642: rgba(255,255,255,0.80);
+  --e79b3140: rgba(255,255,255,0.1);
+  --b85faf96: #4ecdc4;
+  --7dc7b913: rgba(255,255,255,0.80);
+
+  /* Bot bubble */
+  --ad6ea6d4: rgba(8, 6, 40, 0.75);
+  --07936ad6: #ffffff;
+  --acbe80d8: rgba(255,255,255,0.15);
+
+  /* User bubble background + text */
+  --c29949c0: rgba(20, 80, 80, 0.75);
+  --48c1289f: #ffffff;
+
+  /* Outgoing text colour (typed message text) */
+  --0c263fc3: #ffffff;
+
+  /* Textarea */
+  --7928e673: rgba(8, 6, 28, 0.60);
+  --0e8b201e: rgba(255,255,255,0.20);
+
+  /* Send button */
+  --9443edaa: rgba(8, 6, 28, 0.60);
+  --1f2a2851: rgba(255,255,255,0.20);
+  --ee440a2c: #56cfe1;
+
+  /* Voice button */
+  --31fb3552: rgba(8, 6, 28, 0.60);
+  --12d5e816: #56cfe1;
+  --d261fe56: rgba(255,255,255,0.20);
+
+  /* .odl-button (quick reply options) */
+  --0a12e3fe: rgba(255,255,255,0.10);
+  --71382ffd: #ffffff;
+
+  /* .odl-button--secondary */
+  --cffc58a4: rgba(78,205,196,0.15);
+  --1a40a3ad: #4ecdc4;
+
+  /* message button text */
+  --22814b18: #ffffff;
+
+  --5937ca6f: 0.875rem;
+  --e4cc3850: 400;
+  --c0e321f6: 0.75rem;
+}
+
+html, body {
+  font-family: 'Inter', sans-serif !important;
+  background: transparent !important;
+}
+
+.od-body {
+  background: rgba(8, 6, 28, 0.50) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  border-radius: 18px !important;
+  font-family: 'Inter', sans-serif !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+}
+
+.od-body-header,
+.od-body-header__container {
+  background: transparent !important;
+  border-bottom: none !important;
+  border: none !important;
+}
+
+.od-body-header__title {
+  color: #4ecdc4 !important;
+  font-weight: 600 !important;
+  font-size: 1.05rem !important;
+}
+
+.od-body-header__menu,
+.od-body-header__close {
+  color: rgba(255,255,255,0.80) !important;
+}
+
+.od-body__main {
+  background:
+    repeating-linear-gradient(
+      -52deg,
+      rgba(255,255,255,0.025) 0px,
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px,
+      transparent 30px
+    ) !important;
+}
+
+.od-message-list { background: transparent !important; }
+
+.od-message-author__title {
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+/* ── BOT BUBBLES ─────────────────────────────────────────── */
+.od-message-item--incoming .od-message-item__bubble {
+  background: rgba(8, 6, 40, 0.75) !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  color: #ffffff !important;
+}
+
+.od-message-item--incoming .od-message-item__bubble *,
+.od-message-item--incoming .od-message-item__bubble p,
+.od-message-item--incoming .od-message-item__bubble span {
+  color: #ffffff !important;
+}
+
+/* ── USER BUBBLES (typed + button response) ──────────────── */
+.od-message-item--outgoing .od-message-item__bubble {
+  background: rgba(20, 80, 80, 0.80) !important;
+  border: 1px solid rgba(78,205,196,0.35) !important;
+  color: #ffffff !important;
+}
+
+/* Force all text inside outgoing bubble white */
+.od-message-item--outgoing .od-message-item__bubble *,
+.od-message-item--outgoing .od-message-item__bubble p,
+.od-message-item--outgoing .od-message-item__bubble span,
+.odl-message-text--outgoing,
+.odl-message-text--outgoing * {
+  color: #ffffff !important;
+}
+
+.od-message-item__time { color: rgba(255,255,255,0.50) !important; }
+
+/* ── QUICK REPLY BUTTONS ─────────────────────────────────── */
+.odl-button {
+  background: rgba(255,255,255,0.10) !important;
+  border: 1px solid rgba(255,255,255,0.35) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+.odl-button:hover {
+  background: rgba(255,255,255,0.18) !important;
+  border-color: rgba(255,255,255,0.55) !important;
+}
+
+.odl-button--secondary {
+  background: rgba(78,205,196,0.15) !important;
+  border: 1px solid rgba(78,205,196,0.45) !important;
+  color: #4ecdc4 !important;
+}
+
+.odl-button *, .odl-button span, .odl-button p { color: inherit !important; }
+.odl-message-button { color: #ffffff !important; }
+
+/* ── INPUT FOOTER ────────────────────────────────────────── */
+.od-body-form {
+  background: transparent !important;
+  border-top: none !important;
+  border: none !important;
+  border-radius: 0 0 18px 18px !important;
+}
+
+.od-user-input .textarea-sizer {
+  background: rgba(8, 6, 28, 0.60) !important;
+  border: 1px solid rgba(255,255,255,0.20) !important;
+  border-radius: 24px !important;
+}
+
+.od-user-input .textarea-sizer:focus-within {
+  border-color: rgba(78,205,196,0.5) !important;
+}
+
+.od-user-input .textarea-sizer textarea {
+  color: #ffffff !important;
+  caret-color: #56cfe1 !important;
+}
+
+.od-user-input .textarea-sizer textarea::placeholder {
+  color: rgba(255,255,255,0.40) !important;
+}
+
+.od-user-input__button {
+  background: rgba(8, 6, 28, 0.60) !important;
+  border-color: rgba(255,255,255,0.20) !important;
+  color: #56cfe1 !important;
+}
+
+/* ── DROPDOWN ────────────────────────────────────────────── */
+.od-dropdown-menu {
+  background: rgba(8, 6, 28, 0.92) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+.od-dropdown-menu__item {
+  color: #ffffff !important;
+  border-bottom-color: rgba(255,255,255,0.08) !important;
+}
+
+/* ── SCROLLBAR ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px !important; }
+::-webkit-scrollbar-track { background: transparent !important; }
+::-webkit-scrollbar-thumb {
+  background: rgba(78,205,196,0.30) !important;
+  border-radius: 4px !important;
+}
