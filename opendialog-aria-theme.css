@@ -1,113 +1,79 @@
 /*
  * OpenDialog WebChat — Aria Dark Theme
- * =====================================
- * Targets the real class names used inside the OD iframe.
- * Upload this file somewhere publicly accessible and paste the URL into:
- *   OD Dashboard → Interface Settings → Custom CSS → CSS for Chatbot → Link to CSS file
+ * Built using confirmed class names from assets.webchat.opendialog.app/style.css
  */
 
-/* ─── GOOGLE FONT ─────────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 /* ─── COLOUR TOKENS ───────────────────────────────────────────────── */
 :root {
   --aria-navy:        #121630;
   --aria-navy-light:  #1a2040;
+  --aria-navy-card:   #161c3a;
   --aria-teal:        #4ecdc4;
   --aria-cyan:        #56cfe1;
   --aria-text:        #e8eaf6;
   --aria-text-muted:  #8892b0;
-  --aria-bubble-bot:  rgba(255,255,255,0.07);
+  --aria-bubble-bot:  #1e2347;
   --aria-bubble-user: rgba(78,205,196,0.15);
   --aria-border:      rgba(255,255,255,0.09);
   --aria-input-bg:    rgba(255,255,255,0.06);
 }
 
-/* ─── GLOBAL / BODY ───────────────────────────────────────────────── */
-body, html {
+/* ─── GLOBAL ──────────────────────────────────────────────────────── */
+html, body {
   font-family: 'Inter', sans-serif !important;
   background: var(--aria-navy) !important;
   color: var(--aria-text) !important;
 }
 
-/* ─── MAIN CHAT WRAPPER ───────────────────────────────────────────── */
-.od-chat,
-.od-webchat,
-.od-chat-window,
-.od-widget,
-[class^="od-chat"],
-[class^="od-widget"] {
-  font-family: 'Inter', sans-serif !important;
+/* ─── MAIN BODY WRAPPER ───────────────────────────────────────────── */
+.od-body {
   background: var(--aria-navy) !important;
-  color: var(--aria-text) !important;
+  font-family: 'Inter', sans-serif !important;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6) !important;
+
+  /* diagonal line overlay */
+  position: relative !important;
 }
 
-/* Diagonal line background pattern on the chat area */
-.od-chat__messages,
-.od-messages,
-.od-message-list,
-[class*="messages"] {
+/* ─── HEADER ──────────────────────────────────────────────────────── */
+.od-body-header {
+  background: var(--aria-navy) !important;
+  border-bottom: 1px solid var(--aria-border) !important;
+  border-radius: 16px 16px 0 0 !important;
+}
+
+.od-body-header__title {
+  color: var(--aria-teal) !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+}
+
+.od-body-header__menu,
+.od-body-header__close {
+  color: var(--aria-text-muted) !important;
+}
+
+.od-body-header__menu:hover,
+.od-body-header__close:hover {
+  color: var(--aria-teal) !important;
+}
+
+/* ─── MESSAGE AREA ────────────────────────────────────────────────── */
+.od-body__main {
   background:
     repeating-linear-gradient(
       -55deg,
-      rgba(255,255,255,0.018) 0px,
-      rgba(255,255,255,0.018) 1px,
+      rgba(255,255,255,0.015) 0px,
+      rgba(255,255,255,0.015) 1px,
       transparent 1px,
       transparent 28px
     ),
     var(--aria-navy) !important;
 }
 
-/* ─── HEADER ──────────────────────────────────────────────────────── */
-.od-header,
-.od-chat__header,
-[class*="od-header"] {
-  background: var(--aria-navy) !important;
-  border-bottom: 1px solid var(--aria-border) !important;
-  color: var(--aria-text) !important;
-}
-
-/* Agent / bot name in header */
-.od-header__name,
-.od-agent-name,
-[class*="header__name"],
-[class*="agent-name"],
-[class*="bot-name"] {
-  color: var(--aria-teal) !important;
-  font-weight: 600 !important;
-}
-
-/* Header sub-text / status */
-.od-header__subtitle,
-.od-header__status,
-[class*="header__subtitle"],
-[class*="header__status"] {
-  color: var(--aria-text-muted) !important;
-  font-size: 0.75rem !important;
-}
-
-/* Avatar */
-.od-header__avatar img,
-.od-avatar img,
-[class*="avatar"] img {
-  border: 2px solid var(--aria-teal) !important;
-  border-radius: 50% !important;
-}
-
-/* Header close / minimise / menu icons */
-.header-close,
-.od-header__close,
-[class*="header-close"],
-[class*="header__close"] {
-  color: var(--aria-text-muted) !important;
-}
-
-.header-close:hover,
-[class*="header-close"]:hover {
-  color: var(--aria-teal) !important;
-}
-
-/* Dropdown menu button (⋮ icon) */
+/* ─── DROPDOWN MENU ───────────────────────────────────────────────── */
 .od-dropdown__button {
   color: var(--aria-text-muted) !important;
 }
@@ -123,108 +89,60 @@ body, html {
   border-bottom-color: var(--aria-border) !important;
 }
 
-.od-dropdown-menu__item:hover {
+.od-dropdown-menu__item:hover,
+.od-dropdown-menu__item.-active {
   background: rgba(255,255,255,0.05) !important;
 }
 
-/* ─── MESSAGE BUBBLES ─────────────────────────────────────────────── */
-
-/* Bot / agent messages */
-.od-message--agent .od-message__text,
-.od-message--agent .od-message__bubble,
-.od-message[data-author="agent"] .od-message__bubble,
-[class*="message--agent"] [class*="message__bubble"],
-[class*="message--bot"] [class*="message__bubble"] {
-  background: var(--aria-bubble-bot) !important;
-  border: 1px solid var(--aria-border) !important;
-  border-radius: 4px 14px 14px 14px !important;
-  color: var(--aria-text) !important;
-}
-
-/* User messages */
-.od-message--user .od-message__text,
-.od-message--user .od-message__bubble,
-.od-message[data-author="user"] .od-message__bubble,
-[class*="message--user"] [class*="message__bubble"] {
-  background: var(--aria-bubble-user) !important;
-  border: 1px solid rgba(78,205,196,0.2) !important;
-  border-radius: 14px 4px 14px 14px !important;
-  color: var(--aria-text) !important;
-}
-
-/* Timestamp */
-.od-message__time,
-[class*="message__time"],
-[class*="message-time"] {
-  color: var(--aria-text-muted) !important;
-  font-size: 0.68rem !important;
-}
-
-/* ─── QUICK REPLIES / BUTTON LIST ────────────────────────────────── */
-.od-list-message__item,
-.od-button-message,
-.od-list-item,
-[class*="list-message__item"],
-[class*="button-message"],
-[class*="quick-reply"] {
-  background: transparent !important;
-  border: 1px solid rgba(86,207,225,0.35) !important;
-  border-radius: 20px !important;
-  color: var(--aria-cyan) !important;
-  font-weight: 500 !important;
-  transition: background 0.2s, color 0.2s !important;
-}
-
-.od-list-message__item:hover,
-.od-button-message:hover,
-[class*="list-message__item"]:hover,
-[class*="quick-reply"]:hover {
-  background: rgba(86,207,225,0.12) !important;
-  color: var(--aria-teal) !important;
-}
-
-/* ─── INPUT AREA ──────────────────────────────────────────────────── */
-.od-input,
-.od-chat__input,
-.od-input-wrapper,
-[class*="od-input"],
-[class*="chat__input"] {
+/* ─── INPUT FORM ──────────────────────────────────────────────────── */
+.od-body-form {
   background: var(--aria-navy) !important;
   border-top: 1px solid var(--aria-border) !important;
+  border-radius: 0 0 16px 16px !important;
 }
 
-.od-input__field,
-.od-input input,
-.od-input textarea,
-[class*="input__field"],
-[class*="input-field"] {
+/* The textarea wrapper */
+.od-user-input .textarea-sizer {
   background: var(--aria-input-bg) !important;
   border: 1px solid var(--aria-border) !important;
   border-radius: 24px !important;
+  transition: border-color 0.2s !important;
+}
+
+.od-user-input .textarea-sizer:focus-within {
+  border-color: var(--aria-cyan) !important;
+  outline-color: rgba(86,207,225,0.2) !important;
+}
+
+/* The actual textarea element */
+.od-user-input .textarea-sizer textarea {
   color: var(--aria-text) !important;
   caret-color: var(--aria-cyan) !important;
   font-family: 'Inter', sans-serif !important;
 }
 
-.od-input__field::placeholder,
-.od-input input::placeholder,
-[class*="input__field"]::placeholder {
+.od-user-input .textarea-sizer textarea::placeholder {
   color: var(--aria-text-muted) !important;
 }
 
 /* Send button */
-.od-input__send,
-.od-send-button,
-[class*="input__send"],
-[class*="send-button"] {
-  background: transparent !important;
+.od-user-input__button {
+  background: var(--aria-navy-light) !important;
+  border-color: var(--aria-border) !important;
   color: var(--aria-cyan) !important;
-  border: none !important;
+  border-radius: 10px !important;
 }
 
-.od-input__send:hover,
-[class*="send-button"]:hover {
+.od-user-input__button:hover {
+  background: rgba(86,207,225,0.15) !important;
+  border-color: var(--aria-cyan) !important;
   color: var(--aria-teal) !important;
+}
+
+.od-user-input__button:disabled {
+  background: var(--aria-navy) !important;
+  color: var(--aria-text-muted) !important;
+  border-color: var(--aria-border) !important;
 }
 
 /* Voice button */
@@ -234,14 +152,25 @@ body, html {
   color: var(--aria-cyan) !important;
 }
 
-/* ─── SCROLLBAR ───────────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background: rgba(78,205,196,0.3);
-  border-radius: 4px;
+/* ─── PROGRESS BAR ────────────────────────────────────────────────── */
+.od-progress {
+  background: var(--aria-navy) !important;
 }
 
-/* ─── LINKS / MISC TEXT ───────────────────────────────────────────── */
+/* ─── SCROLLBAR ───────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px !important; }
+::-webkit-scrollbar-track { background: transparent !important; }
+::-webkit-scrollbar-thumb {
+  background: rgba(78,205,196,0.3) !important;
+  border-radius: 4px !important;
+}
+
+/* ─── MISC ────────────────────────────────────────────────────────── */
 a { color: var(--aria-cyan) !important; }
 a:hover { color: var(--aria-teal) !important; }
+
+/* Any remaining white backgrounds */
+* {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(78,205,196,0.3) transparent !important;
+}
