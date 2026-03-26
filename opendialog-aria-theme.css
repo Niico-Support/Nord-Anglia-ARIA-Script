@@ -1,34 +1,42 @@
 /*
- * OpenDialog — Aria Dark Glassmorphism Theme v4
- * Matching the target design: dark navy, frosted glass bubbles,
- * teal agent name, cyan links, online dot, diagonal line bg
+ * OpenDialog — Aria Dark Theme (Final)
+ * Uses exact class names & CSS variables confirmed from style.css
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 /* ================================================================
-   OD INTERNAL CSS VARIABLE OVERRIDES (hashed names from style.css)
+   OVERRIDE OD'S INTERNAL HASHED CSS VARIABLES
    ================================================================ */
 :root {
   /* Font */
   --31da3d0e: 'Inter', sans-serif;
 
-  /* Body background */
-  --1a712666: #0f1328;
+  /* .od-body background */
+  --1a712666: #0d1130;
 
-  /* Header background */
-  --7da64eb0: #0f1328;
+  /* .od-body-header background */
+  --7da64eb0: #0d1130;
 
-  /* Header title colour → teal */
+  /* Header title + icons colour */
   --4796082f: #4ecdc4;
 
   /* Header icon colours */
-  --7dc7b913: rgba(255,255,255,0.45);
-  --709662e5: rgba(255,255,255,0.45);
+  --709662e5: rgba(255,255,255,0.5);
   --732948e6: #1a2040;
   --70a8208a: #4ecdc4;
+  --7dc7b913: rgba(255,255,255,0.5);
 
-  /* Input / textarea */
+  /* INCOMING (bot) bubble colours */
+  --33f9ae7a: rgba(255,255,255,0.07);   /* bubble background */
+  --ce90f10e: #dde1f5;                  /* bubble text colour */
+  --2ac65378: rgba(255,255,255,0.10);   /* bubble border */
+
+  /* OUTGOING (user) bubble colours */
+  --1fd8ef04: rgba(78,205,196,0.18);    /* bubble background */
+  --a9e710fa: #dde1f5;                  /* bubble text colour */
+
+  /* Input textarea */
   --008226db: rgba(255,255,255,0.06);
   --06542459: rgba(255,255,255,0.10);
   --5d115345: #4ecdc4;
@@ -38,14 +46,17 @@
   --0d7809c1: 0.875rem;
 
   /* Send button */
-  --4b8fe793: rgba(255,255,255,0.06);
+  --4b8fe793: rgba(255,255,255,0.07);
   --6b0fa22e: rgba(255,255,255,0.10);
   --4750c752: #56cfe1;
 
   /* Voice button */
-  --31fb3552: rgba(255,255,255,0.06);
+  --31fb3552: rgba(255,255,255,0.07);
   --12d5e816: #56cfe1;
   --d261fe56: rgba(255,255,255,0.10);
+
+  /* Message font size */
+  --0d1ffc82: 0.9rem;
 
   /* Dropdown */
   --7d1391f5: 0.875rem;
@@ -62,250 +73,110 @@ html, body {
 }
 
 /* ================================================================
-   MAIN CARD — glassmorphism effect
+   MAIN CARD
    ================================================================ */
 .od-body {
-  background: rgba(13, 17, 45, 0.88) !important;
+  background: #0d1130 !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
   font-family: 'Inter', sans-serif !important;
-}
-
-/* ================================================================
-   DIAGONAL LINE BACKGROUND on message area
-   ================================================================ */
-.od-body__main {
-  background:
-    repeating-linear-gradient(
-      -52deg,
-      rgba(255,255,255,0.028) 0px,
-      rgba(255,255,255,0.028) 1px,
-      transparent 1px,
-      transparent 32px
-    ),
-    rgba(13, 17, 45, 0.0) !important;
 }
 
 /* ================================================================
    HEADER
    ================================================================ */
 .od-body-header {
-  background: rgba(13, 17, 45, 0.95) !important;
-  border-bottom: 1px solid rgba(255,255,255,0.07) !important;
-  border-radius: 16px 16px 0 0 !important;
+  background: #0d1130 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
 }
 
-/* Agent name — teal */
 .od-body-header__title {
   color: #4ecdc4 !important;
   font-weight: 600 !important;
-  font-size: 1.05rem !important;
 }
 
-/* Header icons (minimise, menu) */
 .od-body-header__menu,
 .od-body-header__close {
-  color: rgba(255,255,255,0.45) !important;
-}
-
-/* Avatar — teal ring */
-.od-body-header__logo img,
-[class*="avatar"] img {
-  border: 2px solid #4ecdc4 !important;
-  border-radius: 50% !important;
-}
-
-/* "Online" status dot — inject via subtitle if present */
-.od-body-header__subtitle,
-[class*="header__subtitle"],
-[class*="header__status"] {
-  color: rgba(255,255,255,0.55) !important;
-  font-size: 0.72rem !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 5px !important;
-}
-
-.od-body-header__subtitle::before,
-[class*="header__subtitle"]::before {
-  content: '' !important;
-  display: inline-block !important;
-  width: 7px !important;
-  height: 7px !important;
-  border-radius: 50% !important;
-  background: #4caf7d !important;
-  box-shadow: 0 0 6px #4caf7d !important;
-  flex-shrink: 0 !important;
+  color: rgba(255,255,255,0.5) !important;
 }
 
 /* ================================================================
-   MESSAGE BUBBLES
+   MESSAGE LIST AREA — diagonal lines
    ================================================================ */
-
-/* Bot message bubbles — dark frosted */
-.od-body__main .od-message--agent,
-.od-body__main [class*="message--agent"],
-.od-body__main [class*="message--bot"] {
-  background: rgba(255,255,255,0.07) !important;
-  border: 1px solid rgba(255,255,255,0.10) !important;
-  border-radius: 4px 16px 16px 16px !important;
-  color: #dde1f5 !important;
-  box-shadow: none !important;
+.od-body__main {
+  background:
+    repeating-linear-gradient(
+      -52deg,
+      rgba(255,255,255,0.025) 0px,
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px,
+      transparent 32px
+    ),
+    #0d1130 !important;
 }
 
-/* Target the inner text/bubble wrapper too */
-[class*="message--agent"] > *,
-[class*="message--agent"] p,
-[class*="message--bot"] > *,
-[class*="message--bot"] p {
-  color: #dde1f5 !important;
+.od-message-list {
   background: transparent !important;
 }
 
-/* Any white card wrapping a bot message */
-.od-body__main .od-message--agent .od-message__bubble,
-.od-body__main .od-message--agent .od-message__text,
-.od-body__main [class*="message__bubble"],
-.od-body__main [class*="message__text"] {
+/* ================================================================
+   INCOMING (BOT) BUBBLES
+   ================================================================ */
+.od-message-item--incoming .od-message-item__bubble {
   background: rgba(255,255,255,0.07) !important;
   border: 1px solid rgba(255,255,255,0.10) !important;
   color: #dde1f5 !important;
-  border-radius: 4px 16px 16px 16px !important;
-  backdrop-filter: blur(6px) !important;
-}
-
-/* User message bubbles — teal tint */
-.od-body__main .od-message--user,
-.od-body__main [class*="message--user"] {
-  background: rgba(78,205,196,0.12) !important;
-  border: 1px solid rgba(78,205,196,0.22) !important;
-  border-radius: 16px 4px 16px 16px !important;
-  color: #dde1f5 !important;
-}
-
-.od-body__main .od-message--user .od-message__bubble,
-.od-body__main .od-message--user .od-message__text,
-.od-body__main [class*="message--user"] [class*="message__bubble"] {
-  background: rgba(78,205,196,0.12) !important;
-  border: 1px solid rgba(78,205,196,0.22) !important;
-  color: #dde1f5 !important;
-  border-radius: 16px 4px 16px 16px !important;
-}
-
-/* Timestamps */
-[class*="message__time"],
-[class*="message-time"] {
-  color: rgba(255,255,255,0.3) !important;
-  font-size: 0.66rem !important;
 }
 
 /* ================================================================
-   QUICK REPLIES / BUTTON LIST — cyan link style
+   OUTGOING (USER) BUBBLES
    ================================================================ */
-.od-list-message__item,
-.od-button-message,
-[class*="list-message__item"],
-[class*="button-message"],
-[class*="quick-reply"],
-[class*="list-item"] {
-  background: transparent !important;
-  border: none !important;
-  color: #56cfe1 !important;
-  font-weight: 500 !important;
-  font-size: 0.9rem !important;
-  padding: 4px 0 !important;
-  text-align: left !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-}
-
-.od-list-message__item:hover,
-[class*="list-message__item"]:hover,
-[class*="quick-reply"]:hover {
-  color: #4ecdc4 !important;
-  background: transparent !important;
+.od-message-item--outgoing .od-message-item__bubble {
+  background: rgba(78,205,196,0.18) !important;
+  border: 1px solid rgba(78,205,196,0.25) !important;
+  color: #dde1f5 !important;
 }
 
 /* ================================================================
-   INPUT FORM FOOTER
+   INPUT FOOTER
    ================================================================ */
 .od-body-form {
-  background: rgba(13, 17, 45, 0.95) !important;
-  border-top: 1px solid rgba(255,255,255,0.07) !important;
-  border-radius: 0 0 16px 16px !important;
+  background: #0d1130 !important;
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
 }
 
-/* Textarea pill */
 .od-user-input .textarea-sizer {
   background: rgba(255,255,255,0.06) !important;
-  border: 1px solid rgba(255,255,255,0.10) !important;
+  border-color: rgba(255,255,255,0.10) !important;
   border-radius: 24px !important;
-}
-
-.od-user-input .textarea-sizer:focus-within {
-  border-color: rgba(78,205,196,0.5) !important;
-  outline-color: rgba(78,205,196,0.12) !important;
 }
 
 .od-user-input .textarea-sizer textarea {
   color: #d0d4f0 !important;
   caret-color: #56cfe1 !important;
-  font-family: 'Inter', sans-serif !important;
 }
 
 .od-user-input .textarea-sizer textarea::placeholder {
   color: #5a6285 !important;
 }
 
-/* Send button */
 .od-user-input__button {
-  background: rgba(255,255,255,0.06) !important;
-  border: 1px solid rgba(255,255,255,0.10) !important;
-  color: #56cfe1 !important;
-  border-radius: 10px !important;
-}
-
-.od-user-input__button:hover:not(:disabled) {
-  background: rgba(86,207,225,0.14) !important;
-  border-color: rgba(86,207,225,0.4) !important;
-  color: #4ecdc4 !important;
-}
-
-.od-user-input__button:disabled {
-  opacity: 0.35 !important;
-}
-
-/* Voice button */
-.od-voice {
-  background: rgba(255,255,255,0.06) !important;
+  background: rgba(255,255,255,0.07) !important;
   border-color: rgba(255,255,255,0.10) !important;
   color: #56cfe1 !important;
 }
 
 /* ================================================================
-   DROPDOWN MENU
+   DROPDOWN
    ================================================================ */
 .od-dropdown-menu {
   background: #151c3d !important;
-  border: 1px solid rgba(255,255,255,0.10) !important;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.5) !important;
+  border-color: rgba(255,255,255,0.10) !important;
 }
 
 .od-dropdown-menu__item {
   color: #d0d4f0 !important;
   border-bottom-color: rgba(255,255,255,0.07) !important;
-}
-
-.od-dropdown-menu__item:hover {
-  background: rgba(255,255,255,0.05) !important;
-}
-
-/* ================================================================
-   PROGRESS BAR
-   ================================================================ */
-.od-progress {
-  background: rgba(13,17,45,0.95) !important;
 }
 
 /* ================================================================
@@ -316,26 +187,4 @@ html, body {
 ::-webkit-scrollbar-thumb {
   background: rgba(78,205,196,0.25) !important;
   border-radius: 4px !important;
-}
-* {
-  scrollbar-width: thin !important;
-  scrollbar-color: rgba(78,205,196,0.25) transparent !important;
-}
-
-/* ================================================================
-   CATCH-ALL — kill any remaining white backgrounds
-   ================================================================ */
-.od-body * {
-  border-color: inherit;
-}
-
-/* Any white card/panel inside the body */
-.od-body [style*="background: rgb(255"] ,
-.od-body [style*="background-color: rgb(255"],
-.od-body [style*="background:#fff"],
-.od-body [style*="background: #fff"],
-.od-body [style*="background:white"],
-.od-body [style*="background: white"] {
-  background: rgba(255,255,255,0.07) !important;
-  color: #dde1f5 !important;
 }
