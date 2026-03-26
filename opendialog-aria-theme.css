@@ -1,66 +1,93 @@
 /*
- * OpenDialog WebChat — Aria Dark Theme
- * Built using confirmed class names from assets.webchat.opendialog.app/style.css
+ * OpenDialog — Aria Dark Theme
+ * Overrides OD's internal hashed CSS variables + confirmed class names
+ * Load via: Interface Settings → CSS for Chatbot → Link to CSS file
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
-/* ─── COLOUR TOKENS ───────────────────────────────────────────────── */
+/* ================================================================
+   STEP 1: Override OD's hashed CSS variables at :root level.
+   These are the real variables OD uses internally (from style.css).
+   ================================================================ */
 :root {
-  --aria-navy:        #121630;
-  --aria-navy-light:  #1a2040;
-  --aria-navy-card:   #161c3a;
-  --aria-teal:        #4ecdc4;
-  --aria-cyan:        #56cfe1;
-  --aria-text:        #e8eaf6;
-  --aria-text-muted:  #8892b0;
-  --aria-bubble-bot:  #1e2347;
-  --aria-bubble-user: rgba(78,205,196,0.15);
-  --aria-border:      rgba(255,255,255,0.09);
-  --aria-input-bg:    rgba(255,255,255,0.06);
+  /* Primary colour — used for header bg, launcher bg, accents */
+  --709662e5: #4ecdc4;   /* icon/text colour on dark bg */
+  --732948e6: #121630;   /* icon bg active state */
+  --70a8208a: #4ecdc4;   /* accent / active colour */
+
+  /* Body background */
+  --1a712666: #121630;   /* .od-body background */
+
+  /* Header */
+  --7da64eb0: #121630;   /* .od-body-header background */
+  --4796082f: #e8eaf6;   /* header title colour */
+  --41cc9d06: 1rem;      /* header title font size */
+  --5e6aaf40: 0;         /* header title margin-top */
+
+  /* Input area */
+  --008226db: rgba(255,255,255,0.06);  /* textarea-sizer background */
+  --06542459: rgba(255,255,255,0.12);  /* textarea-sizer border */
+  --5d115345: #4ecdc4;                 /* textarea focus border */
+  --937168c6: rgba(78,205,196,0.2);    /* textarea focus outline */
+  --31961c9a: #e8eaf6;                 /* textarea text colour */
+  --5e0e2d34: #8892b0;                 /* textarea placeholder */
+  --0d7809c1: 0.875rem;                /* textarea font size */
+
+  /* Send button */
+  --4b8fe793: #1a2040;   /* send button background */
+  --6b0fa22e: rgba(255,255,255,0.12); /* send button border */
+  --4750c752: #56cfe1;   /* send button icon colour */
+
+  /* Voice button */
+  --31fb3552: #1a2040;   /* voice button background */
+  --12d5e816: #56cfe1;   /* voice button icon */
+  --d261fe56: rgba(255,255,255,0.12); /* voice button border */
+
+  /* Header close/menu icons */
+  --7dc7b913: #8892b0;   /* header-close colour */
+
+  /* Font */
+  --31da3d0e: 'Inter', sans-serif;
+
+  /* Dropdown */
+  --7d1391f5: 0.875rem;  /* dropdown item font size */
+  --29a1e1de: 400;       /* dropdown item font weight */
+  --598f038b: 0.75rem;   /* dropdown sub head font size */
 }
 
-/* ─── GLOBAL ──────────────────────────────────────────────────────── */
+/* ================================================================
+   STEP 2: Class-level overrides for anything not covered by variables
+   ================================================================ */
+
 html, body {
   font-family: 'Inter', sans-serif !important;
-  background: var(--aria-navy) !important;
-  color: var(--aria-text) !important;
+  background: #121630 !important;
 }
 
-/* ─── MAIN BODY WRAPPER ───────────────────────────────────────────── */
+/* Main chat card */
 .od-body {
-  background: var(--aria-navy) !important;
+  background: #121630 !important;
   font-family: 'Inter', sans-serif !important;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.6) !important;
-
-  /* diagonal line overlay */
-  position: relative !important;
 }
 
-/* ─── HEADER ──────────────────────────────────────────────────────── */
+/* Header */
 .od-body-header {
-  background: var(--aria-navy) !important;
-  border-bottom: 1px solid var(--aria-border) !important;
-  border-radius: 16px 16px 0 0 !important;
+  background: #121630 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.09) !important;
 }
 
 .od-body-header__title {
-  color: var(--aria-teal) !important;
+  color: #4ecdc4 !important;
   font-weight: 600 !important;
-  font-size: 1rem !important;
 }
 
 .od-body-header__menu,
 .od-body-header__close {
-  color: var(--aria-text-muted) !important;
+  color: #8892b0 !important;
 }
 
-.od-body-header__menu:hover,
-.od-body-header__close:hover {
-  color: var(--aria-teal) !important;
-}
-
-/* ─── MESSAGE AREA ────────────────────────────────────────────────── */
+/* Message scroll area — diagonal lines + dark bg */
 .od-body__main {
   background:
     repeating-linear-gradient(
@@ -70,106 +97,71 @@ html, body {
       transparent 1px,
       transparent 28px
     ),
-    var(--aria-navy) !important;
+    #121630 !important;
 }
 
-/* ─── DROPDOWN MENU ───────────────────────────────────────────────── */
-.od-dropdown__button {
-  color: var(--aria-text-muted) !important;
-}
-
-.od-dropdown-menu {
-  background: var(--aria-navy-light) !important;
-  border: 1px solid var(--aria-border) !important;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
-}
-
-.od-dropdown-menu__item {
-  color: var(--aria-text) !important;
-  border-bottom-color: var(--aria-border) !important;
-}
-
-.od-dropdown-menu__item:hover,
-.od-dropdown-menu__item.-active {
-  background: rgba(255,255,255,0.05) !important;
-}
-
-/* ─── INPUT FORM ──────────────────────────────────────────────────── */
+/* Input / form footer */
 .od-body-form {
-  background: var(--aria-navy) !important;
-  border-top: 1px solid var(--aria-border) !important;
-  border-radius: 0 0 16px 16px !important;
+  background: #121630 !important;
+  border-top: 1px solid rgba(255,255,255,0.09) !important;
 }
 
-/* The textarea wrapper */
+/* Textarea wrapper */
 .od-user-input .textarea-sizer {
-  background: var(--aria-input-bg) !important;
-  border: 1px solid var(--aria-border) !important;
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(255,255,255,0.12) !important;
   border-radius: 24px !important;
-  transition: border-color 0.2s !important;
 }
 
-.od-user-input .textarea-sizer:focus-within {
-  border-color: var(--aria-cyan) !important;
-  outline-color: rgba(86,207,225,0.2) !important;
-}
-
-/* The actual textarea element */
 .od-user-input .textarea-sizer textarea {
-  color: var(--aria-text) !important;
-  caret-color: var(--aria-cyan) !important;
-  font-family: 'Inter', sans-serif !important;
+  color: #e8eaf6 !important;
+  caret-color: #56cfe1 !important;
 }
 
 .od-user-input .textarea-sizer textarea::placeholder {
-  color: var(--aria-text-muted) !important;
+  color: #8892b0 !important;
 }
 
 /* Send button */
 .od-user-input__button {
-  background: var(--aria-navy-light) !important;
-  border-color: var(--aria-border) !important;
-  color: var(--aria-cyan) !important;
+  background: #1a2040 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #56cfe1 !important;
   border-radius: 10px !important;
 }
 
-.od-user-input__button:hover {
+.od-user-input__button:hover:not(:disabled) {
   background: rgba(86,207,225,0.15) !important;
-  border-color: var(--aria-cyan) !important;
-  color: var(--aria-teal) !important;
+  border-color: #56cfe1 !important;
 }
 
-.od-user-input__button:disabled {
-  background: var(--aria-navy) !important;
-  color: var(--aria-text-muted) !important;
-  border-color: var(--aria-border) !important;
+/* Dropdown */
+.od-dropdown-menu {
+  background: #1a2040 !important;
+  border-color: rgba(255,255,255,0.12) !important;
 }
 
-/* Voice button */
-.od-voice {
-  background: var(--aria-navy-light) !important;
-  border-color: var(--aria-border) !important;
-  color: var(--aria-cyan) !important;
+.od-dropdown-menu__item {
+  color: #e8eaf6 !important;
+  border-bottom-color: rgba(255,255,255,0.09) !important;
 }
 
-/* ─── PROGRESS BAR ────────────────────────────────────────────────── */
+.od-dropdown-menu__item:hover {
+  background: rgba(255,255,255,0.05) !important;
+}
+
+/* Progress bar area */
 .od-progress {
-  background: var(--aria-navy) !important;
+  background: #121630 !important;
 }
 
-/* ─── SCROLLBAR ───────────────────────────────────────────────────── */
+/* Scrollbar */
 ::-webkit-scrollbar { width: 4px !important; }
 ::-webkit-scrollbar-track { background: transparent !important; }
 ::-webkit-scrollbar-thumb {
   background: rgba(78,205,196,0.3) !important;
   border-radius: 4px !important;
 }
-
-/* ─── MISC ────────────────────────────────────────────────────────── */
-a { color: var(--aria-cyan) !important; }
-a:hover { color: var(--aria-teal) !important; }
-
-/* Any remaining white backgrounds */
 * {
   scrollbar-width: thin !important;
   scrollbar-color: rgba(78,205,196,0.3) transparent !important;
