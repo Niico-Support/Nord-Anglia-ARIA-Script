@@ -1,48 +1,48 @@
 /*
- * OpenDialog — Aria Dark Theme (FINAL)
- * Variable names extracted directly from the live style.css
+ * OpenDialog — Aria Glassmorphism Theme
+ * Semi-transparent dark card with diagonal lines bleeding through
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  /* Body background */
-  --49584358: #0d1130;
+  /* Body — fully transparent so page background shows through */
+  --49584358: transparent;
 
-  /* Header background */
-  --47dc15c5: #0d1130;
+  /* Header — semi-transparent dark */
+  --47dc15c5: rgba(18, 14, 48, 0.55);
 
-  /* Header title colour → teal */
+  /* Header title → teal */
   --79bff9f8: #4ecdc4;
 
-  /* Header icon colours */
-  --56e33642: rgba(255,255,255,0.5);
-  --e79b3140: #1a2040;
+  /* Header icons */
+  --56e33642: rgba(255,255,255,0.55);
+  --e79b3140: rgba(255,255,255,0.1);
   --b85faf96: #4ecdc4;
-  --7dc7b913: rgba(255,255,255,0.5);
+  --7dc7b913: rgba(255,255,255,0.55);
 
-  /* Incoming (bot) bubble */
-  --ad6ea6d4: rgba(255,255,255,0.07);   /* background */
-  --07936ad6: #dde1f5;                  /* text */
-  --acbe80d8: rgba(255,255,255,0.10);   /* border */
+  /* Bot bubble — very subtle frosted */
+  --ad6ea6d4: rgba(255,255,255,0.06);
+  --07936ad6: #e2e4f0;
+  --acbe80d8: rgba(255,255,255,0.08);
 
-  /* Outgoing (user) bubble */
-  --c29949c0: rgba(78,205,196,0.18);    /* background */
-  --48c1289f: #dde1f5;                  /* text */
+  /* User bubble — teal tint */
+  --c29949c0: rgba(78,205,196,0.12);
+  --48c1289f: #e2e4f0;
 
-  /* Textarea input */
-  --7928e673: rgba(255,255,255,0.06);   /* background */
-  --0e8b201e: rgba(255,255,255,0.10);   /* border */
+  /* Textarea */
+  --7928e673: rgba(255,255,255,0.05);
+  --0e8b201e: rgba(255,255,255,0.12);
 
   /* Send button */
-  --9443edaa: rgba(255,255,255,0.07);   /* background */
-  --1f2a2851: rgba(255,255,255,0.10);   /* border */
-  --ee440a2c: #56cfe1;                  /* icon colour */
+  --9443edaa: rgba(255,255,255,0.05);
+  --1f2a2851: rgba(255,255,255,0.12);
+  --ee440a2c: #56cfe1;
 
   /* Voice button */
-  --31fb3552: rgba(255,255,255,0.07);
+  --31fb3552: rgba(255,255,255,0.05);
   --12d5e816: #56cfe1;
-  --d261fe56: rgba(255,255,255,0.10);
+  --d261fe56: rgba(255,255,255,0.12);
 
   /* Dropdown */
   --5937ca6f: 0.875rem;
@@ -53,19 +53,25 @@
 /* ── GLOBAL ──────────────────────────────────────────────── */
 html, body {
   font-family: 'Inter', sans-serif !important;
-  background: #0d1130 !important;
+  background: transparent !important;
 }
 
-/* ── MAIN CARD ───────────────────────────────────────────── */
+/* ── MAIN CARD — glassmorphism ───────────────────────────── */
 .od-body {
-  background: #0d1130 !important;
+  background: rgba(18, 14, 48, 0.45) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  border-radius: 18px !important;
   font-family: 'Inter', sans-serif !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
 }
 
-/* ── HEADER ──────────────────────────────────────────────── */
+/* ── HEADER — semi-transparent ───────────────────────────── */
 .od-body-header {
-  background: #0d1130 !important;
+  background: rgba(18, 14, 48, 0.55) !important;
   border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 18px 18px 0 0 !important;
 }
 
 .od-body-header__title {
@@ -75,50 +81,55 @@ html, body {
 
 .od-body-header__menu,
 .od-body-header__close {
-  color: rgba(255,255,255,0.5) !important;
+  color: rgba(255,255,255,0.55) !important;
 }
 
-/* ── MESSAGE AREA ────────────────────────────────────────── */
+/* ── MESSAGE AREA — transparent with diagonal lines ─────── */
 .od-body__main {
   background:
     repeating-linear-gradient(
       -52deg,
-      rgba(255,255,255,0.025) 0px,
-      rgba(255,255,255,0.025) 1px,
+      rgba(255,255,255,0.03) 0px,
+      rgba(255,255,255,0.03) 1px,
       transparent 1px,
-      transparent 32px
-    ),
-    #0d1130 !important;
+      transparent 30px
+    ) !important;
 }
 
 .od-message-list {
   background: transparent !important;
 }
 
-/* ── BOT BUBBLES ─────────────────────────────────────────── */
+/* ── BOT BUBBLES — frosted glass ─────────────────────────── */
 .od-message-item--incoming .od-message-item__bubble {
-  background: rgba(255,255,255,0.07) !important;
-  border: 1px solid rgba(255,255,255,0.10) !important;
-  color: #dde1f5 !important;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  color: #e2e4f0 !important;
+  backdrop-filter: blur(4px) !important;
 }
 
-/* ── USER BUBBLES ────────────────────────────────────────── */
+/* ── USER BUBBLES — teal tint ────────────────────────────── */
 .od-message-item--outgoing .od-message-item__bubble {
-  background: rgba(78,205,196,0.18) !important;
-  border: 1px solid rgba(78,205,196,0.25) !important;
-  color: #dde1f5 !important;
+  background: rgba(78,205,196,0.12) !important;
+  border: 1px solid rgba(78,205,196,0.20) !important;
+  color: #e2e4f0 !important;
 }
 
-/* ── INPUT FOOTER ────────────────────────────────────────── */
+/* ── INPUT FOOTER — semi-transparent ────────────────────── */
 .od-body-form {
-  background: #0d1130 !important;
+  background: rgba(18, 14, 48, 0.55) !important;
   border-top: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 0 0 18px 18px !important;
 }
 
 .od-user-input .textarea-sizer {
-  background: rgba(255,255,255,0.06) !important;
-  border-color: rgba(255,255,255,0.10) !important;
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
   border-radius: 24px !important;
+}
+
+.od-user-input .textarea-sizer:focus-within {
+  border-color: rgba(78,205,196,0.4) !important;
 }
 
 .od-user-input .textarea-sizer textarea {
@@ -127,19 +138,20 @@ html, body {
 }
 
 .od-user-input .textarea-sizer textarea::placeholder {
-  color: #5a6285 !important;
+  color: rgba(255,255,255,0.3) !important;
 }
 
 .od-user-input__button {
-  background: rgba(255,255,255,0.07) !important;
-  border-color: rgba(255,255,255,0.10) !important;
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.12) !important;
   color: #56cfe1 !important;
 }
 
 /* ── DROPDOWN ────────────────────────────────────────────── */
 .od-dropdown-menu {
-  background: #151c3d !important;
+  background: rgba(18, 14, 48, 0.85) !important;
   border-color: rgba(255,255,255,0.10) !important;
+  backdrop-filter: blur(12px) !important;
 }
 
 .od-dropdown-menu__item {
